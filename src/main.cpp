@@ -19,8 +19,11 @@ int main()
 
     while (!WindowShouldClose())
     {
+#pragma region raylib
         BeginDrawing();
         ClearBackground(RAYWHITE);
+#pragma endregion
+
 
 #pragma region ImGui
         rlImGuiBegin();
@@ -35,45 +38,8 @@ int main()
         DrawRectangle(100, 100, 200, 200, {200,0,200, 100});
 #pragma endregion
 
-#pragma region First Window
-        ImGui::Begin("My first window");
+        ImGui::Text("Test");
 
-        ImGui::Text("Hello World");
-
-        if (ImGui::Button("Click me"))
-        {
-            std::cout << "Button clicked!" << std::endl;
-        }
-
-        ImGui::End();
-#pragma endregion
-
-#pragma region Second Window
-
-        ImGui::Begin("My second window");
-
-        ImGui::Text("Hello World");
-        ImGui::Separator();
-
-        if (ImGui::Button("Button 1"))
-        {
-            std::cout << "text button 1" << std::endl;
-        }
-        ImGui::SameLine();
-        if (ImGui::Button("Button 2"))
-        {
-            std::cout << "Button text 2" << std::endl;
-        }
-
-        ImGui::NewLine();
-
-        // Static because then the variable keeps its value between frames.
-        // Without it, startValue would be recreated every frame and reset back to 2.0f
-        static float startValue = 2.0f;
-        ImGui::SliderFloat("Value", &startValue, 0.0f, 1.0f);
-
-        ImGui::End();
-#pragma endregion
 
         rlImGuiEnd();
         EndDrawing();
