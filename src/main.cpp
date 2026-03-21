@@ -38,8 +38,20 @@ int main()
         DrawRectangle(100, 100, 200, 200, {200,0,200, 100});
 #pragma endregion
 
-        ImGui::Text("Test");
 
+#pragma region Checkbox
+        ImGui::Begin("Checkbox");
+
+        static bool statement;
+
+        if (ImGui::Checkbox("Are you Gay?", &statement))
+        {
+            // NOTE: Need to use paranthese around statement so it gets evaluated first. Otherwise only statement will be read and returns either 0 or 1.
+            std::cout << "User said he is " << (statement ? "gay" : "not gay") << std::endl;
+        }
+
+        ImGui::End();
+#pragma endregion
 
         rlImGuiEnd();
         EndDrawing();
