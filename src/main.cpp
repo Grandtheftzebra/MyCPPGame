@@ -15,6 +15,10 @@ int main()
     ImGuiIO& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     io.FontGlobalScale = 2;
+
+    //ImGui::StyleColorsDark();
+    ImGui::StyleColorsClassic();
+
 #pragma endregion
 
     while (!WindowShouldClose())
@@ -36,6 +40,8 @@ int main()
         DrawText("My first text", 400, 0, 20, GREEN);
         DrawRectangle(100, 100, 200, 200, {50,200,200, 255});
         DrawRectangle(100, 100, 200, 200, {200,0,200, 100});
+
+        ImGui::ShowDemoWindow();
 #pragma endregion
 
 
@@ -46,7 +52,8 @@ int main()
 
         if (ImGui::Checkbox("Are you Gay?", &statement))
         {
-            // NOTE: Need to use paranthese around statement so it gets evaluated first. Otherwise only statement will be read and returns either 0 or 1.
+            // NOTE: Need to use paranthese around statement so it gets evaluated first.
+            // Otherwise only statement will be read and returns either 0 or 1.
             std::cout << "User said he is " << (statement ? "gay" : "not gay") << std::endl;
         }
 
