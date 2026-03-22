@@ -3,11 +3,20 @@
 
 #include <imgui.h>
 #include <rlImGui.h>
+#include <gameMain.h>
 
 int main()
 {
+
+#if PRODUCTION_BUILD == 1
+    // Prevents raylib to print debug messages to the console.
+    SetTraceLogLevel(LOG_NONE);
+#endif
+
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(2000, 1000, "My Game");
+    SetExitKey(KEY_NULL); // Disables ESC to close the window
+    SetTargetFPS(60);
 
 #pragma region Setup
     rlImGuiSetup(true);
@@ -15,7 +24,15 @@ int main()
     ImGuiIO& io = ImGui::GetIO();
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
     io.FontGlobalScale = 2;
+
+    //ImGui::StyleColorsDark();
+    ImGui::StyleColorsClassic();
 #pragma endregion
+
+    if (!InitGame())
+    {
+        return 0;
+    }
 
     while (!WindowShouldClose())
     {
@@ -30,11 +47,16 @@ int main()
         ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
         ImGui::PopStyleColor(2);
 
-        DrawText("My first text", 400, 0, 20, GREEN);
-        DrawRectangle(100, 100, 200, 200, {50,200,200, 255});
-        DrawRectangle(100, 100, 200, 200, {200,0,200, 100});
 #pragma endregion
 
+        if (!UpdateGame())
+        {
+            CloseWindow();
+
+            std::cout << "Game failed to update" << std::endl;
+
+            return 0;
+        }
 #pragma region First Window
         ImGui::Begin("My first window");
 
@@ -79,8 +101,10 @@ int main()
         EndDrawing();
     }
 
-    rlImGuiShutdown();
     CloseWindow();
+    CloseGame();
+
+    rlImGuiShutdown();
 
     return 0;
 }
