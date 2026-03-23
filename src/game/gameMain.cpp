@@ -1,6 +1,9 @@
 ﻿#include <raylib.h>
 #include "gameMain.h"
 
+#include <iostream>
+#include <ostream>
+
 bool InitGame()
 {
     return true;
@@ -15,5 +18,5 @@ bool UpdateGame()
 
 void CloseGame()
 {
-
+    std::cout << "Closing game" << std::endl;
 }

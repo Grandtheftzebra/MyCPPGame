@@ -4,6 +4,7 @@
 #include <imgui.h>
 #include <rlImGui.h>
 #include <gameMain.h>
+#include <platformConfig.h>
 
 int main()
 {
@@ -14,9 +15,9 @@ int main()
 #endif
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(2000, 1000, "My Game");
+    InitWindow(PlatformConfig::SCREEN_WIDTH, PlatformConfig::SCREEN_HEIGHT, PlatformConfig::WINDOW_TITLE);
     SetExitKey(KEY_NULL); // Disables ESC to close the window
-    SetTargetFPS(60);
+    SetTargetFPS(PlatformConfig::TARGET_FPS);
 
 #pragma region Setup
     rlImGuiSetup(true);
@@ -31,6 +32,8 @@ int main()
 
     if (!InitGame())
     {
+        std::cout << "Game failed to initialize" << std::endl;
+
         return 0;
     }
 

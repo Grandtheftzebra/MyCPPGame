@@ -74,7 +74,7 @@ elseif(APPLE OR UNIX) # macOS / Linux
 endif()
 
 
-target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/gameLayer/")
+target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/game/")
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src/platform/")
 
 # LINK LIBRARIES HERE!!!!!!!!!!!!!!!!!!
