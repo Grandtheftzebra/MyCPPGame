@@ -15,9 +15,9 @@ int main()
 #endif
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-    InitWindow(PlatformConfig::SCREEN_WIDTH, PlatformConfig::SCREEN_HEIGHT, PlatformConfig::WINDOW_TITLE);
+    InitWindow(2000, 1000, "My Game");
     SetExitKey(KEY_NULL); // Disables ESC to close the window
-    SetTargetFPS(PlatformConfig::TARGET_FPS);
+    SetTargetFPS(240);
 
 #pragma region Setup
     rlImGuiSetup(true);
