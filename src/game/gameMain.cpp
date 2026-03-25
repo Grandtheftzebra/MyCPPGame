@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <ostream>
-#include <customAssert.h>
 
 struct GameData
 {
@@ -23,7 +22,6 @@ bool UpdateGame()
     float deltaTime = GetFrameTime();
 
     if (deltaTime > MaxDeltaTime) {deltaTime = MaxDeltaTime;}
-    ASSERT_MSG(deltaTime > 10.f, "Test");
 
     if (IsKeyDown(KEY_D)) {gameData.PosX += gameData.MoveSpeed * deltaTime;}
     if (IsKeyDown(KEY_A)) {gameData.PosX -= gameData.MoveSpeed * deltaTime;}
@@ -32,6 +30,7 @@ bool UpdateGame()
     if (IsKeyDown(KEY_S)) {gameData.PosY += gameData.MoveSpeed * deltaTime;}
 
     DrawRectangle(gameData.PosX, gameData.PosY, 50, 50, RED);
+
     return true;
 }
 
