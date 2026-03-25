@@ -13,12 +13,14 @@ int main()
     SetTraceLogLevel(LOG_NONE);
 #endif
 
+
+#pragma region Setup
+    // Raylib
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(2000, 1000, "My Game");
     SetExitKey(KEY_NULL); // Disables ESC to close the window
     SetTargetFPS(240);
 
-#pragma region Setup
     rlImGuiSetup(true);
 
     ImGuiIO& io = ImGui::GetIO();
@@ -36,10 +38,13 @@ int main()
         return 0;
     }
 
+    // Main Game Loop. Within Raylib the SetTargetFPS is limiting frame rate
     while (!WindowShouldClose())
     {
         BeginDrawing();
         ClearBackground(BLACK);
+
+        std::cout << "FPS: " << GetFPS() << std::endl;
 
 #pragma region ImGui
         rlImGuiBegin();
