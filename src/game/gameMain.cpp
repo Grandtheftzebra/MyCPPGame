@@ -1,5 +1,6 @@
 ﻿#include <raylib.h>
 #include "gameMain.h"
+#include <asserts.h>
 
 #include <iostream>
 #include <ostream>
@@ -20,8 +21,9 @@ constexpr float MaxDeltaTime = 1.f / 5.f;
 bool UpdateGame()
 {
     float deltaTime = GetFrameTime();
-
     if (deltaTime > MaxDeltaTime) {deltaTime = MaxDeltaTime;}
+
+    permaAssertCommentDevelopement(deltaTime > 10.f, "test");
 
     if (IsKeyDown(KEY_D)) {gameData.PosX += gameData.MoveSpeed * deltaTime;}
     if (IsKeyDown(KEY_A)) {gameData.PosX -= gameData.MoveSpeed * deltaTime;}
